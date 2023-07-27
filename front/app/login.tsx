@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native';
 import PhoneNumber from "@/components/login/PhoneNumber";
 import Subjects from "@/components/login/Subjects";
 import Grades from "@/components/login/Grades";
+import {router} from "expo-router";
 
 enum STEPS {
     NUMBER = 0,
@@ -47,6 +48,7 @@ const Login = () => {
             value: 0,
             selected: false
         });
+        router.push('/home/')
     }, [step, number, subjects, grade]);
 
     let bodyContent = (<PhoneNumber
