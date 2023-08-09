@@ -5,6 +5,7 @@ const COLORS = {
     red: "#FF4237",
     blue: "#3F52D8",
     peach: "#F07965",
+    yellow: "#FEC802",
 
     dirtyWhite: "#EFEDE9",
     white: "#FFFFFF",

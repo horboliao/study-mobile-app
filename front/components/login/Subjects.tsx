@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from "react-native";
 import ButtonComponent from "@/components/ButtonComponent";
-import {COLORS, SIZES} from "@/constants";
+import {COLORS, SIZES, subjects} from "@/constants";
 import Subject from "@/components/Subject";
 
 interface SubjectsProps {
@@ -10,7 +10,6 @@ interface SubjectsProps {
 }
 
 const Subjects: React.FC<SubjectsProps> = ({ setSubjects, onNext}) => {
-    const subjects = ["Math", "Literature", "Ukrainian", "Biology", "Chemistry", "Physics", "English", "Geography", "History"]
     return (
         <View style={{backgroundColor: 'black'}}>
             <View style={styles.containerUp}>
@@ -22,9 +21,9 @@ const Subjects: React.FC<SubjectsProps> = ({ setSubjects, onNext}) => {
                     {
                         subjects.map((subject) => {
                             return <Subject
-                                label={subject}
-                                key={subject}
-                                onPress={() => setSubjects((prevSubjects) => [...prevSubjects, subject])}/>
+                                label={subject.label}
+                                key={subject.label}
+                                onPress={() => setSubjects((prevSubjects) => [...prevSubjects, subject.label])}/>
                         })
                     }
                 </View>
