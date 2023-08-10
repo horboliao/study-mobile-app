@@ -1,7 +1,9 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {COLORS, SIZES, subjects} from "@/constants";
-import SubjectCover from "@/components/SubjectCover";
+import SubjectCover from "@/components/subject/SubjectCover";
+import ContentItem from "@/components/subject/ContentItem";
+import {math} from "@/constants/subjectsContents";
 
 const SubjectsScreen = () => {
     return (
@@ -10,15 +12,23 @@ const SubjectsScreen = () => {
                 <Text style={styles.title}>Hello, student</Text>
             </View>
             <View style={styles.containerDown}>
-                <View style={styles.subjects}>
-                    {
-                        subjects.map((subject) => {
-                            return (
-                                <SubjectCover label={subject.label} color={subject.color} cover={subject.cover} key={subject.label}/>
-                            )
-                        })
-                    }
-                </View>
+                <Text style={styles.label}>Choose your subject</Text>
+                {/*<ScrollView horizontal contentContainerStyle={styles.subjects}>*/}
+                {/*    {*/}
+                {/*        subjects.map((subject) => {*/}
+                {/*            return (*/}
+                {/*                <SubjectCover label={subject.label} color={subject.color} cover={subject.cover} key={subject.label}/>*/}
+                {/*            )*/}
+                {/*        })*/}
+                {/*    }*/}
+                {/*</ScrollView>*/}
+                {
+                    math.map((subjectItem) => {
+                        return (
+                            <ContentItem label={subjectItem.label} units={subjectItem.units} key={subjectItem.label}/>
+                        )
+                    })
+                }
             </View>
         </SafeAreaView>
 
@@ -40,7 +50,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingBottom: 70,
         marginTop:3,
-        height: 716,
+        //height: 716,
         justifyContent: "space-between"
 
     },
@@ -56,6 +66,11 @@ const styles = StyleSheet.create({
     subjects: {
         flexDirection: "row",
         marginVertical: 10
-    }
+    },
+    label: {
+        fontSize: SIZES.l,
+        fontWeight: 'bold',
+        marginTop: 20
+}
 })
 export default SubjectsScreen;

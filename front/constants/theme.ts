@@ -21,6 +21,7 @@ const FONT = {
 const SIZES = {
     xss: 8,
     xs: 12,
+    s: 14,
     m: 16,
     l: 20,
     xl: 24,
