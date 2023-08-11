@@ -2,8 +2,6 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {COLORS, SIZES, subjects} from "@/constants";
 import SubjectCover from "@/components/subject/SubjectCover";
-import ContentItem from "@/components/subject/ContentItem";
-import {math} from "@/constants/subjectsContents";
 
 const SubjectsScreen = () => {
     return (
@@ -13,22 +11,18 @@ const SubjectsScreen = () => {
             </View>
             <View style={styles.containerDown}>
                 <Text style={styles.label}>Choose your subject</Text>
-                {/*<ScrollView horizontal contentContainerStyle={styles.subjects}>*/}
-                {/*    {*/}
-                {/*        subjects.map((subject) => {*/}
-                {/*            return (*/}
-                {/*                <SubjectCover label={subject.label} color={subject.color} cover={subject.cover} key={subject.label}/>*/}
-                {/*            )*/}
-                {/*        })*/}
-                {/*    }*/}
-                {/*</ScrollView>*/}
-                {
-                    math.map((subjectItem) => {
-                        return (
-                            <ContentItem label={subjectItem.label} units={subjectItem.units} key={subjectItem.label}/>
-                        )
-                    })
-                }
+                <ScrollView
+                    horizontal
+                    contentContainerStyle={styles.subjects}
+                    showsHorizontalScrollIndicator={false}>
+                    {
+                        subjects.map((subject) => {
+                            return (
+                                <SubjectCover label={subject.label} color={subject.color} cover={subject.cover} key={subject.label}/>
+                            )
+                        })
+                    }
+                </ScrollView>
             </View>
         </SafeAreaView>
 

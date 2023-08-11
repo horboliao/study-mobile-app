@@ -1,23 +1,19 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {COLORS, SIZES} from "@/constants";
+import {math} from "@/constants/subjectsContents";
 import ContentItem from "@/components/subject/ContentItem";
 
-interface SubjectContentProps {
-    label: string
-    subjectContent: object
-}
-
-const SubjectContent:React.FC<SubjectContentProps> = ({label, subjectContent}) => {
+const SubjectContent = () => {
     return (
         <SafeAreaView style={{backgroundColor: 'black'}}>
             <View style={styles.containerUp}>
-                <Text style={styles.title}>{label}</Text>
+                <Text style={styles.title}>Math</Text>
             </View>
             <View style={styles.containerDown}>
-                <ScrollView horizontal contentContainerStyle={styles.subjectItems}>
+                <ScrollView contentContainerStyle={styles.subjectItems}>
                     {
-                        subjectContent.map((subjectItem) => {
+                        math.map((subjectItem) => {
                             return (
                                 <ContentItem label={subjectItem.label} units={subjectItem.units} key={subjectItem.label}/>
                             )
@@ -26,6 +22,7 @@ const SubjectContent:React.FC<SubjectContentProps> = ({label, subjectContent}) =
                 </ScrollView>
             </View>
         </SafeAreaView>
+
     );
 };
 const styles = StyleSheet.create({
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingBottom: 70,
         marginTop:3,
-        height: 716,
+        //height: 716,
         justifyContent: "space-between"
 
     },
@@ -56,6 +53,15 @@ const styles = StyleSheet.create({
     title: {
         fontSize: SIZES.xl,
         fontWeight: 'bold',
+    },
+    subjects: {
+        flexDirection: "row",
+        marginVertical: 15
+    },
+    label: {
+        fontSize: SIZES.l,
+        fontWeight: 'bold',
+        marginTop: 20
     },
     subjectItems: {
         marginVertical: 10

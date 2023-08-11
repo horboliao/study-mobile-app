@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import {SIZES} from "@/constants";
+import {useNavigation} from "expo-router";
 
 interface SubjectCoverProps {
     label: string,
@@ -9,14 +10,10 @@ interface SubjectCoverProps {
 }
 
 const SubjectCover:React.FC< SubjectCoverProps> = ({ label, cover, color }) => {
-    const [isModalVisible, setModalVisible] = useState(false);
-
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
-    };
+    const navigation = useNavigation();
 
     return (
-        <TouchableOpacity onPress={toggleModal} style={styles.container}>
+        <TouchableOpacity onPress={()=> {navigation.navigate("SubjectContent")}} style={styles.container}>
             <View style={styles.rectangle}>
                 <View style={{
                     backgroundColor: color,
@@ -29,14 +26,6 @@ const SubjectCover:React.FC< SubjectCoverProps> = ({ label, cover, color }) => {
                 </View>
                 <Text style={styles.subjectText}>{label}</Text>
             </View>
-            <Modal visible={isModalVisible} animationType="slide">
-                <View style={styles.modalContent}>
-                    <Text >{label}</Text>
-                    <TouchableOpacity onPress={toggleModal} style={styles.closeButton}>
-                        <Text style={styles.closeButtonText}>Close</Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
         </TouchableOpacity>
     );
 };

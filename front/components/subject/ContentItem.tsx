@@ -1,58 +1,84 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from '@/constants';
+import Icon from "react-native-vector-icons/FontAwesome";
+import {useNavigation} from "expo-router";
 
 interface ContentItemProps {
     label: string;
-    units: object;
+    units: string[];
 }
 
 const ContentItem: React.FC<ContentItemProps> = ({ label, units }) => {
     const [isPositive, setIsPositive] = useState(true);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const navigation = useNavigation();
 
     const handleToggleSign = () => {
         setIsPositive(!isPositive);
+        setIsExpanded(!isExpanded);
+    };
+
+    const handleNavigateToLesson = () => {
+        navigation.navigate('Lesson');
     };
 
     return (
-        <TouchableOpacity
-            onPress={handleToggleSign}
-            style={[
-                styles.container,
-                {
-                    backgroundColor: isPositive ? COLORS.white : COLORS.blue,
-                },
-            ]}
-        >
-            <Text
+        <View>
+            <TouchableOpacity
+                onPress={handleToggleSign}
                 style={[
-                    styles.label,
+                    styles.container,
                     {
-                        color: isPositive ? 'black' : COLORS.white,
-                    },
-                ]}
-            >
-                {label}
-            </Text>
-            <View
-                style={[
-                    styles.button,
-                    {
-                        borderColor: isPositive ? 'black' : COLORS.white,
                         backgroundColor: isPositive ? COLORS.white : COLORS.blue,
+                        borderBottomRightRadius: isPositive ? 15 : 0,
+                        borderBottomLeftRadius: isPositive ? 15: 0
                     },
                 ]}
             >
                 <Text
                     style={[
-                        styles.buttonText,
-                        { color: isPositive ? 'black' : COLORS.white },
+                        styles.label,
+                        {
+                            color: isPositive ? 'black' : COLORS.white,
+                        },
                     ]}
                 >
-                    {isPositive ? '+' : '-'}
+                    {label}
                 </Text>
-            </View>
-        </TouchableOpacity>
+                <View
+                    style={[
+                        styles.button,
+                        {
+                            borderColor: isPositive ? 'black' : COLORS.white,
+                            backgroundColor: isPositive ? COLORS.white : COLORS.blue,
+                        },
+                    ]}
+                >
+                    <Text
+                        style={[
+                            styles.buttonText,
+                            { color: isPositive ? 'black' : COLORS.white },
+                        ]}
+                    >
+                        {isPositive ? '+' : '-'}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+
+            {isExpanded && (
+                <TouchableOpacity style={styles.unitList} onPress={handleNavigateToLesson} >
+                    {units.map((unit, index) => (
+                        <View style={styles.lesson} key={index}>
+                            <Text style={styles.unitText}>
+                                {unit}
+                            </Text>
+                            <Icon name="angle-right" size={20} color="black" style={{marginLeft: 10}}/>
+                        </View>
+                    ))}
+                </TouchableOpacity>
+            )}
+        </View>
     );
 };
 
@@ -60,7 +86,8 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 20,
         paddingHorizontal: 20,
-        borderRadius: 15,
+        borderTopLeftRadius:15,
+        borderTopRightRadius:15,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -82,6 +109,21 @@ const styles = StyleSheet.create({
         fontSize: SIZES.s,
         fontWeight: 'bold',
     },
+    unitList: {
+        backgroundColor: COLORS.white,
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15
+    },
+    unitText: {
+        fontSize: SIZES.s,
+        marginBottom: 5,
+    },
+    lesson: {
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        flexDirection: 'row',
+        justifyContent: "space-between",
+    }
 });
 
 export default ContentItem;
