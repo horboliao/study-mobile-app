@@ -1,19 +1,22 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {COLORS, SIZES} from "@/constants";
-import {math} from "@/constants/subjectsContents";
+import {math, ukrainian} from "@/constants/subjectsContents";
 import ContentItem from "@/components/subject/ContentItem";
+import {useRoute} from "@react-navigation/core";
 
 const SubjectContent = () => {
+    const route = useRoute();
+    const { subjectName } = route.params;
     return (
         <SafeAreaView style={{backgroundColor: 'black'}}>
             <View style={styles.containerUp}>
-                <Text style={styles.title}>Math</Text>
+                <Text style={styles.title}>{subjectName.toUpperCase()}</Text>
             </View>
             <View style={styles.containerDown}>
                 <ScrollView contentContainerStyle={styles.subjectItems}>
                     {
-                        math.map((subjectItem) => {
+                        ukrainian.map((subjectItem) => {
                             return (
                                 <ContentItem label={subjectItem.label} units={subjectItem.units} key={subjectItem.label}/>
                             )

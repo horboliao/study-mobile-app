@@ -19,8 +19,8 @@ const ContentItem: React.FC<ContentItemProps> = ({ label, units }) => {
         setIsExpanded(!isExpanded);
     };
 
-    const handleNavigateToLesson = () => {
-        navigation.navigate('Lesson');
+    const handleNavigateToLesson = (unit: string) => {
+        navigation.navigate('Lesson', { subjectName: label, unitTitle: unit });
     };
 
     return (
@@ -67,16 +67,19 @@ const ContentItem: React.FC<ContentItemProps> = ({ label, units }) => {
             </TouchableOpacity>
 
             {isExpanded && (
-                <TouchableOpacity style={styles.unitList} onPress={handleNavigateToLesson} >
+                <View style={styles.unitList} >
                     {units.map((unit, index) => (
-                        <View style={styles.lesson} key={index}>
+                        <TouchableOpacity
+                            style={styles.lesson}
+                            key={index}
+                            onPress={() => handleNavigateToLesson(unit)}>
                             <Text style={styles.unitText}>
                                 {unit}
                             </Text>
                             <Icon name="angle-right" size={20} color="black" style={{marginLeft: 10}}/>
-                        </View>
+                        </TouchableOpacity>
                     ))}
-                </TouchableOpacity>
+                </View>
             )}
         </View>
     );

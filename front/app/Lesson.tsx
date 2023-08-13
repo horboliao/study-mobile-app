@@ -1,18 +1,65 @@
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import YoutubePlayer from "react-native-youtube-iframe";
 import { COLORS, SIZES } from "@/constants";
+import {useRoute} from "@react-navigation/core";
+import TaskType from "@/components/lesson/TaskType";
+import {literature} from "@/constants/subjectsContents";
+import Grade from "@/components/Grade";
 
 const Lesson = () => {
     const [activeTab, setActiveTab] = useState("Video Lesson");
-
+    const route = useRoute();
+    const { subjectName, unitTitle } = route.params;
     const handleTabChange = (tab) => {
         setActiveTab(tab);
+    };
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case "Video Lesson":
+                return (
+                    <View >
+                        <View style={styles.videoContainer}>
+                            {/*<YoutubePlayer*/}
+                            {/*    height={300}*/}
+                            {/*    videoId={'4FZp1XyylII'}*/}
+                            {/*/>*/}
+                        </View>
+                        <Text style={styles.lessonTitle}>{unitTitle}</Text>
+
+                    </View>
+                );
+            case "Textbook":
+                return (
+                    <View >
+                        {/* Тут може бути текст підручника */}
+                    </View>
+                );
+            case "Tasks":
+                return (
+                    <View>
+                        <TaskType
+                            label={"Колекція завдань"}
+                            description={"Ти можеш створити свій варіант тесту із нашої колекції завдань пщ конкретних розділах предмету, щоб цілеспрямовано готуватися по певних темах."}
+                            buttonLabel={"Створити свій варіант"}
+                            onPress={()=>{}}/>
+                        <TaskType
+                            label={"Пробні варіанти ЗНО/НМТ"}
+                            description={"Ти можеш загальний тренувальний тест НМТ/ЗНО, щоб перевірити загальну підготовку до екзамену."}
+                            buttonLabel={"Вирішити пробний варіант"}
+                            onPress={()=>{}}/>
+                    </View>
+                );
+            default:
+                return null;
+        }
     };
 
     return (
         <SafeAreaView style={{ backgroundColor: 'black' }}>
             <View style={styles.containerUp}>
-                <Text style={styles.title}>Math</Text>
+                <Text style={styles.title}>{subjectName}</Text>
             </View>
             <View style={styles.containerDown}>
                 <View style={styles.tabContainer}>
@@ -35,7 +82,7 @@ const Lesson = () => {
                         <Text style={[styles.tabText, activeTab === "Tasks" && styles.activeTabText]}>Tasks</Text>
                     </TouchableOpacity>
                 </View>
-                {/* Тут ви можете відображати контент для обраної вкладки */}
+                {renderContent()}
             </View>
         </SafeAreaView>
     );
@@ -54,8 +101,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.dirtyWhite,
         borderTopRightRadius: 15,
         borderTopLeftRadius: 15,
-        paddingHorizontal: 15,
-        paddingBottom: 70,
+        padding: 15,
         marginTop: 3,
     },
     title: {
@@ -65,7 +111,6 @@ const styles = StyleSheet.create({
     tabContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 20,
     },
     tab: {
         paddingHorizontal: 15,
@@ -83,6 +128,15 @@ const styles = StyleSheet.create({
         color: COLORS.blue,
         fontWeight: 'bold',
     },
+    videoContainer: {
+        marginVertical: 15,
+        height: 300,
+        backgroundColor: COLORS.gray
+    },
+    lessonTitle: {
+        fontSize: SIZES.s,
+        fontWeight: 'bold',
+    }
 });
 
 export default Lesson;
