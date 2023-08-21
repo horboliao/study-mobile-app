@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS, SIZES } from '@/constants';
-
-const CounterComponent = () => {
+interface TasksCounterProps {
+    onPress: (number) => void
+}
+const TasksCounter:React.FC<TasksCounterProps> = ({onPress}) => {
     const [count, setCount] = useState(0);
 
     const handleDecrement = () => {
@@ -11,13 +13,8 @@ const CounterComponent = () => {
             setCount(count - 1);
         }
     };
-
     const handleIncrement = () => {
         setCount(count + 1);
-    };
-
-    const handleApply = () => {
-        // Додайте вашу логіку обробки дій при натисканні "Застосувати" тут
     };
 
     return (
@@ -31,7 +28,7 @@ const CounterComponent = () => {
                     <Icon name="plus" size={20} color="black" />
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={handleApply} style={styles.applyButton}>
+            <TouchableOpacity onPress={()=>{onPress(count)}} style={styles.applyButton}>
                 <Text style={styles.applyButtonText}>Застосувати</Text>
             </TouchableOpacity>
         </View>
@@ -46,6 +43,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 15,
         backgroundColor: COLORS.white,
+        zIndex: 9999,
         position: 'absolute',
         bottom: 0,
         left: 0,
@@ -80,4 +78,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CounterComponent;
+export default TasksCounter;

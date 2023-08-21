@@ -2,11 +2,11 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/router/index.ts",
   "scripts": {
     "build": "rimraf dist && npx tsc",
     "prestart": "npm run build",
-    "start": "node dist/index.js",
+    "start": "node dist/router/index.js",
     "presere": "npm run build",
     "serve": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\""
   },
@@ -22,6 +22,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "lodash": "^4.17.21",
     "mongoose": "^7.4.3",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
@@ -30,6 +31,7 @@
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
+    "@types/lodash": "^4.14.197",
     "@types/mongoose": "^5.11.97",
     "nodemon": "^3.0.1",
     "prisma": "^5.1.1"
