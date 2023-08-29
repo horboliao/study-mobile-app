@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet,Text, View} from 'react-native';
-import {COLORS, SIZES} from "@/constants";
+import {COLORS, SIZES} from "@/app/constants";
 import {TouchableOpacity} from "react-native";
 
 interface SubjectProps {

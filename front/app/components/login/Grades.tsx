@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from "react-native";
-import ButtonComponent from "@/components/ButtonComponent";
-import {COLORS, SIZES} from "@/constants";
-import Subject from "@/components/Subject";
-import Grade from "@/components/Grade";
+import ButtonComponent from "@/app/components/ButtonComponent";
+import {COLORS, SIZES} from "@/app/constants";
+import Subject from "@/app/components/Subject";
+import Grade from "@/app/components/Grade";
 
 interface GradesProps {
     setGrade: (item)=>void

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { COLORS, SIZES } from '@/constants';
+import { COLORS, SIZES } from '@/app/constants';
 import Icon from "react-native-vector-icons/FontAwesome";
 import {useNavigation} from "expo-router";
 

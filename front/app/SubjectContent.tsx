@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
-import {COLORS, SIZES} from "@/constants";
-import {math, ukrainian} from "@/constants/subjectsContents";
-import ContentItem from "@/components/subject/ContentItem";
+import {COLORS, SIZES} from "@/app/constants";
+import {math, ukrainian} from "@/app/constants/subjectsContents";
+import ContentItem from "@/app/components/subject/ContentItem";
 import {useRoute} from "@react-navigation/core";
-import Layout from "@/components/Layout";
+import Layout from "@/app/components/Layout";
 
 const SubjectContent = () => {
     const route = useRoute();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
-import {SIZES} from "@/constants";
+import {SIZES} from "@/app/constants";
 
 interface ButtonProps {
     onPress: () => void;

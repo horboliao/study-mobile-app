@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { icons } from '@/constants';
+import { icons } from '@/app/constants';
 import SubjectsScreen from '@/app/SubjectsScreen';
 import MyCourses from '@/app/MyCourses';
 import Search from '@/app/Search';

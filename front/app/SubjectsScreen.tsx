@@ -1,8 +1,8 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
-import {COLORS, SIZES, subjects} from "@/constants";
-import SubjectCover from "@/components/subject/SubjectCover";
-import Layout from "@/components/Layout";
+import {COLORS, SIZES, subjects} from "@/app/constants";
+import SubjectCover from "@/app/components/subject/SubjectCover";
+import Layout from "@/app/components/Layout";
 
 const SubjectsScreen = () => {
     return (

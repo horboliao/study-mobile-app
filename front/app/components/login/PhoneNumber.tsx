@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from "react-native";
-import TextField from "@/components/TextField";
-import ButtonComponent from "@/components/ButtonComponent";
-import {COLORS, SIZES} from "@/constants";
+import TextField from "@/app/components/TextField";
+import ButtonComponent from "@/app/components/ButtonComponent";
+import {COLORS, SIZES} from "@/app/constants";
 
 interface PhoneNumberProps {
     number: string

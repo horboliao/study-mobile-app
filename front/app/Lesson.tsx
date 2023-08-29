@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import Toast from "react-native-simple-toast";
-import { COLORS, SIZES } from "@/constants";
+import { COLORS, SIZES } from "@/app/constants";
 import {useRoute} from "@react-navigation/core";
-import TaskType from "@/components/lesson/TaskType";
-import {literature} from "@/constants/subjectsContents";
-import Topic from "@/components/lesson/Topic";
-import TasksCounter from "@/components/lesson/TasksCounter";
-import TextbookItem from "@/components/lesson/TextbookItem";
-import {mathlesson} from "@/constants/lesson";
-import Layout from "@/components/Layout";
+import TaskType from "@/app/components/lesson/TaskType";
+import {literature} from "@/app/constants/subjectsContents";
+import Topic from "@/app/components/lesson/Topic";
+import TasksCounter from "@/app/components/lesson/TasksCounter";
+import TextbookItem from "@/app/components/lesson/TextbookItem";
+import {mathlesson} from "@/app/constants/lesson";
+import Layout from "@/app/components/Layout";
 import {useNavigation} from "expo-router";
 
 const Lesson = () => {
@@ -41,7 +41,7 @@ const Lesson = () => {
     const handleNavigateToTest = (count : number) => {
         if (count!==0) {
             const selected = subjects.find((s) => s.selected)
-            navigation.navigate('Test', {topic: selected.label, taskCount: count});
+            navigation.navigate('TestScreen', {topic: selected.label, taskCount: count});
         }
         //Toast.show('This is a toast.', 500);
     };

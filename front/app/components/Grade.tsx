@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS, SIZES} from "@/constants";
+import {COLORS, SIZES} from "@/app/constants";
 
-interface TopicProps {
+interface GradeProps {
     title: string
+    subtitle: string
+    value: number
     selected: boolean
-    onRadioBtnClick: (item: { title: string; selected: boolean }) => void;
+    onRadioBtnClick: (item: { title: string; subtitle: string; value: number; selected: boolean }) => void;
 }
 
-const Topic: React.FC<TopicProps> = ({title,  selected, onRadioBtnClick }) => {
+const Grade: React.FC<GradeProps> = ({title, subtitle, selected, value, onRadioBtnClick }) => {
+
     const handlePress = () => {
-        onRadioBtnClick({ title, selected: !selected })
+        onRadioBtnClick({ title, subtitle, value, selected: !selected })
     };
 
     return (
@@ -18,6 +21,9 @@ const Topic: React.FC<TopicProps> = ({title,  selected, onRadioBtnClick }) => {
             <View>
                 <Text style={styles.title}>
                     {title}
+                </Text>
+                <Text style={styles.subtitle}>
+                    {subtitle}
                 </Text>
             </View>
             <View style={styles.radioButton}>
@@ -29,11 +35,16 @@ const Topic: React.FC<TopicProps> = ({title,  selected, onRadioBtnClick }) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: SIZES.s,
+        fontSize: SIZES.l,
         fontWeight: 'bold'
     },
+    subtitle: {
+        fontSize: SIZES.xs,
+        color: COLORS.gray,
+        marginTop: 5
+    },
     container: {
-        paddingVertical: 20,
+        paddingVertical: 10,
         paddingHorizontal: 15,
         marginTop: 15,
         borderRadius:15,
@@ -59,4 +70,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Topic;
+export default Grade;

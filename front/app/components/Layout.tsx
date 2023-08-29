@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
-import {COLORS, SIZES} from "@/constants";
+import {COLORS, SIZES} from "@/app/constants";
 
 interface CustomComponentProps {
     title: string;

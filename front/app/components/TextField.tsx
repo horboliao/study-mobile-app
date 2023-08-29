@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
-import { COLORS, SIZES } from '@/constants';
+import { COLORS, SIZES } from '@/app/constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface TextFieldProps {

@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import { SafeAreaView } from 'react-native';
-import PhoneNumber from "@/components/login/PhoneNumber";
-import Subjects from "@/components/login/Subjects";
-import Grades from "@/components/login/Grades";
+import PhoneNumber from "@/app/components/login/PhoneNumber";
+import Subjects from "@/app/components/login/Subjects";
+import Grades from "@/app/components/login/Grades";
 import {router} from "expo-router";
 
 enum STEPS {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from "react-native";
-import ButtonComponent from "@/components/ButtonComponent";
-import {COLORS, SIZES, subjects} from "@/constants";
-import Subject from "@/components/Subject";
+import ButtonComponent from "@/app/components/ButtonComponent";
+import {COLORS, SIZES, subjects} from "@/app/constants";
+import Subject from "@/app/components/Subject";
 
 interface SubjectsProps {
     setSubjects: (value: (((prevState: string[]) => string[]) | string[])) => void

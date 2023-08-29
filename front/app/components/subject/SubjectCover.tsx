@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
-import {SIZES} from "@/constants";
+import {SIZES} from "@/app/constants";
 import {useNavigation} from "expo-router";
 
 interface SubjectCoverProps {

@@ -1,12 +1,18 @@
-export const test = [
+export enum  questionType {
+    singleChoice = "SINGLE_CHOICE",
+    multiChoice = "MULTI_CHOICE",
+    correspondence = "CORRESPONDENCE",
+    numericInput = "NUMERIC_INPUT"
+}
+export const questions = [
     {
         id: "1",
         questionType: "SINGLE_CHOICE",
         questionText: "Яка столиця Франції?",
         options: [
-            { id: "1", optionText: "Лондон", isCorrect: false },
-            { id: "2", optionText: "Париж", isCorrect: false },
-            { id: "3", optionText: "Мадрид", isCorrect: false }
+            { id: "А", optionText: "Лондон", isCorrect: false },
+            { id: "Б", optionText: "Париж", isCorrect: true },
+            { id: "В", optionText: "Мадрид", isCorrect: false }
         ]
     },
     {
@@ -14,10 +20,10 @@ export const test = [
         questionType: "MULTI_CHOICE",
         questionText: "Які з цих кольорів є основними?",
         options: [
-            { id: "4", optionText: "Червоний", isCorrect: true},
-            { id: "5", optionText: "Білий", isCorrect: false},
-            { id: "6", optionText: "Зелений", isCorrect: true},
-            { id: "7", optionText: "Рожевий", isCorrect: false},
+            { id: "А", optionText: "Червоний", isCorrect: true},
+            { id: "Б", optionText: "Білий", isCorrect: false},
+            { id: "В", optionText: "Зелений", isCorrect: true},
+            { id: "Г", optionText: "Рожевий", isCorrect: false},
         ]
     },
     {
@@ -28,38 +34,38 @@ export const test = [
             {
                 id: "1",
                 optionText: "Відкриття дверей",
-                correctAnswer: "3"
+                correctAnswer: "В"
             },
             {
                 id: "2",
                 optionText: "Світлофор",
-                correctAnswer: "4"
+                correctAnswer: "Г"
             },
             {
                 id: "3",
                 optionText: "Дзвінок на двері",
-                correctAnswer:"1"
+                correctAnswer:"А"
             }
         ],
         options: [
             {
-                id: "1",
+                id: "А",
                 optionText: "Звук дзвоника"
             },
             {
-                id: "2",
+                id: "Б",
                 optionText: "Зупинка руху автомобілів"
             },
             {
-                id: "3",
+                id: "В",
                 optionText: "Відкриття дверей ліфта"
             },
             {
-                id: "4",
+                id: "Г",
                 optionText: "Зелене світло для пішоходів"
             },
             {
-                id: "5",
+                id: "Д",
                 optionText: "Звук сигналу для водіїв"
             }
         ]
@@ -69,9 +75,7 @@ export const test = [
         id: "11",
         questionType: "NUMERIC_INPUT",
         questionText: "Скільки планет в сонячній системі?",
-        options: [
-            { id: "17", correctAnswer: "8" }
-        ]
+        correctAnswer: "8"
     }
 
 

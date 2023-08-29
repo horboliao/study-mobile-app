@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
-import {COLORS, SIZES} from "@/constants";
+import {COLORS, SIZES} from "@/app/constants";
 
 const ProgressBar = ({ progress, currentTaskIndex, tasksLength}) => {
     const width = useSharedValue(0);

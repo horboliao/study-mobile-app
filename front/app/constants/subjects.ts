@@ -1,5 +1,5 @@
 import covers from "./covers"
-import {COLORS} from "@/constants/theme";
+import {COLORS} from "@/app/constants/theme";
 export const subjects = [
     {
         label: "Math",
