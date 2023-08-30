@@ -7,9 +7,10 @@ interface ChoiceOptionProps {
     options: Option[]
     multi?: boolean
     onCheckAnswer: (isCorrect: boolean)=>void
+    correctAnswer?: string
 }
 
-const ChoiceOption:React.FC<ChoiceOptionProps> = ({ options, multi, onCheckAnswer}) => {
+const ChoiceOption:React.FC<ChoiceOptionProps> = ({ options, multi, onCheckAnswer, correctAnswer}) => {
     const [selectedOptions, setSelectedOptions] = useState<Set<Option>>(new Set());
 
     const toggleOption = (option: Option) => {
@@ -27,10 +28,15 @@ const ChoiceOption:React.FC<ChoiceOptionProps> = ({ options, multi, onCheckAnswe
     };
 
     useEffect(() => {
-        const selectedIds = Array.from(selectedOptions).map(option => option.id);
-        const correctIds = options.filter(option => option.isCorrect).map(option => option.id);
-        const isCorrect = JSON.stringify(selectedIds) === JSON.stringify(correctIds);
-        onCheckAnswer(isCorrect);
+        if (correctAnswer) {
+            const selectedOption = selectedOptions.size > 0 ? Array.from(selectedOptions)[0] : null;
+            onCheckAnswer(selectedOption ? selectedOption.id === correctAnswer : false);
+        } else {
+            const selectedIds = Array.from(selectedOptions).map(option => option.id);
+            const correctIds = options.filter(option => option.isCorrect).map(option => option.id);
+            const isCorrect = JSON.stringify(selectedIds) === JSON.stringify(correctIds);
+            onCheckAnswer(isCorrect);
+        }
     },[selectedOptions]);
 
     return (

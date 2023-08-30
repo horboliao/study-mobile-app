@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Checkbox from "@/app/components/test/Checkbox";
 import ChoiceOption from "@/app/components/test/ChoiceOption";
@@ -6,13 +6,24 @@ import {SIZES} from "@/app/constants";
 
 interface CorrespondenceOptionProps {
     question: Question;
+    onCheckAnswer: (isCorrect: boolean)=>void
 }
 
-const CorrespondenceOption: React.FC<CorrespondenceOptionProps> = ({question,}) => {
+const CorrespondenceOption: React.FC<CorrespondenceOptionProps> = ({question,onCheckAnswer}) => {
+    const [exampleResults, setExampleResults] = useState<{ [exampleId: string]: boolean | undefined }>({});
 
-    const handleCheckAnswer = (isCorrect: boolean) => {
-
+    const handleCorrespondenceAnswer = (exampleId: string, isCorrect: boolean) => {
+        setExampleResults(prevResults => ({
+            ...prevResults,
+            [exampleId]: isCorrect,
+        }));
+        console.log(exampleResults)
     };
+
+    useEffect(()=> {
+        const allTrue = Object.values(exampleResults).every(result => result === true);
+        onCheckAnswer(allTrue);
+    }, [exampleResults])
 
     return (
         <View>
@@ -27,7 +38,7 @@ const CorrespondenceOption: React.FC<CorrespondenceOptionProps> = ({question,}) 
                             <ChoiceOption
                                 options={question.options}
                                 correctAnswer={example.correctAnswer}
-                                onCheckAnswer={handleCheckAnswer}
+                                onCheckAnswer={(isCorrect) => handleCorrespondenceAnswer(example.id, isCorrect)}
                             />
                         </View>
                     )
