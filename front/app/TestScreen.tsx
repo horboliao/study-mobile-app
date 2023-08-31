@@ -6,6 +6,7 @@ import Layout from "@/app/components/Layout";
 import ProgressBar from "@/app/components/test/ProgressBar";
 import ButtonComponent from "@/app/components/ButtonComponent";
 import {questions} from "@/app/constants/questions";
+import {AnswerModal} from "@/app/components/test/AnswerModal";
 
 const TestScreen = () => {
     const route = useRoute();
@@ -15,9 +16,16 @@ const TestScreen = () => {
     const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
     const [progress, setProgress] = useState(0);
     const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isDescButtonVisible, setIsDescButtonVisible] = useState(false);
+    const [goNextTask, setGoNextTask] = useState(false);
 
     const handleCheckAnswer = (isCorrect: boolean) => {
         setIsAnswerCorrect(isCorrect);
+    };
+
+    const toggleModal = () => {
+        setIsModalVisible(!isModalVisible);
     };
 
     useEffect(() => {
@@ -39,10 +47,17 @@ const TestScreen = () => {
     }, [selectedTasks, currentTaskIndex]);
 
     const handleNextTask = () => {
-        if (currentTaskIndex < selectedTasks.length - 1) {
-            setCurrentTaskIndex(currentTaskIndex + 1);
-            setProgress((currentTaskIndex + 1) / selectedTasks.length);
-            setCurrentTask(selectedTasks[currentTaskIndex])
+        if(isAnswerCorrect||goNextTask){
+            if (currentTaskIndex < selectedTasks.length - 1) {
+                setCurrentTaskIndex(currentTaskIndex + 1);
+                setProgress((currentTaskIndex + 1) / selectedTasks.length);
+                setCurrentTask(selectedTasks[currentTaskIndex])
+                setIsDescButtonVisible(false)
+                setGoNextTask(false)
+            }
+        } else {
+            setIsDescButtonVisible(true)
+            setGoNextTask(true)
         }
         console.log(isAnswerCorrect)
     };
@@ -53,10 +68,31 @@ const TestScreen = () => {
 
     return (
         <Layout title={topic}>
-            <ProgressBar progress={(currentTaskIndex + 1) / selectedTasks.length} currentTaskIndex={currentTaskIndex + 1} tasksLength={selectedTasks.length}/>
-            <Text style={styles.question}>{currentTask.questionText}</Text>
-            <InputController currentTask={currentTask} handleCheckAnswer={handleCheckAnswer}/>
-            <ButtonComponent title={ currentTaskIndex===selectedTasks.length - 1 ? "Закінчити" : "Наступне завдання"} onPress={handleNextTask} />
+            <ProgressBar
+                progress={progress}
+                currentTaskIndex={currentTaskIndex + 1}
+                tasksLength={selectedTasks.length}
+            />
+            <Text
+                style={styles.question}>{currentTask.questionText}
+            </Text>
+            <InputController
+                currentTask={currentTask}
+                handleCheckAnswer={handleCheckAnswer}
+            />
+            {isDescButtonVisible ? (
+                <ButtonComponent
+                    title={"Повторити теорію"}
+                    onPress={toggleModal}
+                    outline
+                />
+            ): null}
+            <ButtonComponent
+                title={ currentTaskIndex===selectedTasks.length - 1 ? "Закінчити" : "Наступне завдання"}
+                onPress={handleNextTask}
+            />
+            <AnswerModal isModalVisible={isModalVisible} toggleModal={toggleModal} explanation={currentTask.explanation}/>
+            {/* if answer incorrect or correct, show toast to inform about it*/}
         </Layout>
     );
 };

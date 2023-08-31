@@ -5,17 +5,17 @@ import {SIZES} from "@/app/constants";
 interface ButtonProps {
     onPress: () => void;
     title: string;
+    outline?: boolean
 }
 
-const ButtonComponent: React.FC<ButtonProps> = ({ onPress, title }) => {
+const ButtonComponent: React.FC<ButtonProps> = ({ onPress, title, outline }) => {
     return (
-        <Pressable style={styles.button} onPress={onPress}>
-            <Text style={styles.text}>{title}</Text>
+        <Pressable style={[styles.button, outline && styles.outlineButton]} onPress={onPress}>
+            <Text style={[styles.text, outline && styles.outlineText]}>{title}</Text>
         </Pressable>
     );
 };
 
-export default ButtonComponent;
 const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
@@ -26,8 +26,18 @@ const styles = StyleSheet.create({
         width: '100%',
         marginVertical: 10
     },
+    outlineButton: {
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
     text: {
         fontSize: SIZES.m,
         color: 'white',
     },
+    outlineText: {
+        color: 'black',
+    },
 });
+
+export default ButtonComponent;

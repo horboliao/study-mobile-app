@@ -13,9 +13,11 @@ type Option = {
 type Question = {
     id: string;
     questionType: string;
+    value: number;
     questionText: string;
     correctAnswer?: string;
     examples?: Example[];
     options: Option[];
+    explanation: string;
 };
 

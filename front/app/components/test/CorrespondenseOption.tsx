@@ -17,7 +17,6 @@ const CorrespondenceOption: React.FC<CorrespondenceOptionProps> = ({question,onC
             ...prevResults,
             [exampleId]: isCorrect,
         }));
-        console.log(exampleResults)
     };
 
     useEffect(()=> {
