@@ -5,7 +5,7 @@ import {COLORS, SIZES} from "@/app/constants";
 interface CustomComponentProps {
     title: string;
     subtitle?: string;
-    children: JSX.Element | null;
+    children: JSX.Element | null | false;
 }
 
 const CustomComponent: React.FC<CustomComponentProps> = ({ title, subtitle, children }) => {

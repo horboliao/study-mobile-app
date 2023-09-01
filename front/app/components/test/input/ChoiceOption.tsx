@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, StyleSheet } from 'react-native';
 import {COLORS, SIZES} from "@/app/constants";
-import Checkbox from "@/app/components/test/Checkbox";
+import Checkbox from "@/app/components/test/input/Checkbox";
 
 interface ChoiceOptionProps {
     options: Option[]

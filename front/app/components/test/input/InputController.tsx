@@ -1,8 +1,8 @@
 import {StyleSheet, View} from "react-native";
 import React, {useState} from "react";
-import ChoiceOption from "@/app/components/test/ChoiceOption";
-import TextOption from "@/app/components/test/TextOption";
-import CorrespondenceOption from "@/app/components/test/CorrespondenseOption";
+import ChoiceOption from "@/app/components/test/input/ChoiceOption";
+import TextOption from "@/app/components/test/input/TextOption";
+import CorrespondenceOption from "@/app/components/test/input/CorrespondenseOption";
 import {questionType} from "@/app/constants/questions";
 
 interface CorrespondenceQuestionProps {

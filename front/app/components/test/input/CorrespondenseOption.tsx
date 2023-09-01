@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Checkbox from "@/app/components/test/Checkbox";
-import ChoiceOption from "@/app/components/test/ChoiceOption";
+import Checkbox from "@/app/components/test/input/Checkbox";
+import ChoiceOption from "@/app/components/test/input/ChoiceOption";
 import {SIZES} from "@/app/constants";
 
 interface CorrespondenceOptionProps {
