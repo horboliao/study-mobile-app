@@ -5,7 +5,7 @@ import Layout from "@/app/components/Layout";
 import ProgressBar from "@/app/components/test/ProgressBar";
 import ButtonComponent from "@/app/components/ButtonComponent";
 import { questions } from "@/app/constants/questions";
-import { AnswerModal } from "@/app/components/test/AnswerModal";
+import { AnswerModal } from "@/app/components/modals/AnswerModal";
 import InputController from "@/app/components/test/input/InputController";
 import {useNavigation} from "expo-router";
 
@@ -47,7 +47,7 @@ const TestScreen = () => {
                     goNextTask: false,
                 }));
             } else {
-                navigation.navigate('TestResults', {maxPoints: 39, scoredPoints: 3});
+                navigation.navigate('testResults', {maxPoints: 39, scoredPoints: 3});
             }
         } else {
             setTaskState((prevState) => ({
@@ -91,15 +91,23 @@ const TestScreen = () => {
                 tasksLength={selectedTasks.length}
             />
             <Text style={styles.question}>{currentTask.questionText}</Text>
-            <InputController currentTask={currentTask} handleCheckAnswer={handleCheckAnswer} />
+            <InputController
+                currentTask={currentTask}
+                handleCheckAnswer={handleCheckAnswer} />
+
             {taskState.isDescButtonVisible && (
                 <ButtonComponent title={"Повторити теорію"} onPress={toggleModal} outline />
             )}
+
             <ButtonComponent
                 title={currentTaskIndex === selectedTasks.length - 1 ? "Закінчити" : "Наступне завдання"}
                 onPress={handleNextTask}
             />
-            <AnswerModal isModalVisible={isModalVisible} toggleModal={toggleModal} explanation={currentTask.explanation} />
+            <AnswerModal
+                isModalVisible={isModalVisible}
+                toggleModal={toggleModal}
+                explanation={currentTask.explanation}
+            />
             {/* if answer incorrect or correct, show toast to inform about it*/}
         </Layout>
     );

@@ -44,8 +44,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     subtitle: {
-        fontSize: SIZES.xs,
+        fontSize: SIZES.s,
         color: 'grey',
+        marginTop: 4
     }
 });
 

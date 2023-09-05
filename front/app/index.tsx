@@ -1,9 +1,19 @@
-import Bar from "@/app/components/navbar/Bar";
 import React from "react";
+import * as Linking from 'expo-linking';
+import {NavigationContainer} from "@react-navigation/native";
+import Bar from "@/app/bar";
+
+const prefix = Linking.createURL('/');
 
 const Index = () => {
+    const linking = {
+        prefixes: [prefix],
+    };
     return (
-        <Bar/>
+            <Bar/>
+        // <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+        //     {/* content */}
+        // </NavigationContainer>
     );
 };
 

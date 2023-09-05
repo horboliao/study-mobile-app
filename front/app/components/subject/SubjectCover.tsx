@@ -13,7 +13,7 @@ const SubjectCover:React.FC< SubjectCoverProps> = ({ label, cover, color }) => {
     const navigation = useNavigation();
 
     return (
-        <TouchableOpacity onPress={()=> {navigation.navigate("SubjectContent", { subjectName: label.toLowerCase() })}} style={styles.container}>
+        <TouchableOpacity onPress={()=> {navigation.navigate("subjectContent", { subjectName: label.toLowerCase() })}} style={styles.container}>
             <View style={styles.rectangle}>
                 <View style={{
                     backgroundColor: color,

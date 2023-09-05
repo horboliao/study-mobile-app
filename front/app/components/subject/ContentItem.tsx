@@ -20,7 +20,8 @@ const ContentItem: React.FC<ContentItemProps> = ({ label, units }) => {
     };
 
     const handleNavigateToLesson = (unit: string) => {
-        navigation.navigate('Lesson', { subjectName: label, unitTitle: unit });
+        navigation.navigate('lesson', { subjectName: label, unitTitle: unit });
+        //navigation.navigate('testScreen', {topic: selected.label, taskCount: count});
     };
 
     return (

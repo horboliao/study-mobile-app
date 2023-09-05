@@ -8,9 +8,20 @@ interface TextFieldProps {
     placeholder: string;
     onChangeText: (text: string) => void;
     secure?: boolean;
+    search?: boolean;
+    onSearch?: () => void;
+    onFilter?: () => void;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ value, placeholder, onChangeText, secure }) => {
+const TextField: React.FC<TextFieldProps> = ({
+                                                 value,
+                                                 placeholder,
+                                                 onChangeText,
+                                                 secure ,
+                                                 search,
+                                                 onSearch,
+                                                 onFilter
+                                             }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -19,8 +30,19 @@ const TextField: React.FC<TextFieldProps> = ({ value, placeholder, onChangeText,
 
     return (
         <View style={styles.inputContainer}>
+            {search && (
+                <TouchableOpacity
+                    onPress={onSearch}
+                    style={styles.iconContainer}
+                >
+                    <Icon name="search" size={20} color={COLORS.gray} />
+                </TouchableOpacity>
+            )}
             <TextInput
-                style={styles.input}
+                style={[
+                    styles.input,
+                    search ? styles.searchInput : null,
+                ]}
                 placeholder={placeholder}
                 placeholderTextColor={COLORS.gray}
                 onChangeText={onChangeText}
@@ -28,8 +50,19 @@ const TextField: React.FC<TextFieldProps> = ({ value, placeholder, onChangeText,
                 secureTextEntry={!showPassword && secure}
             />
             {secure && (
-                <TouchableOpacity onPress={togglePasswordVisibility} style={styles.eyeIconContainer}>
+                <TouchableOpacity
+                    onPress={togglePasswordVisibility}
+                    style={styles.eyeIconContainer}
+                >
                     <Icon name={showPassword ? 'eye' : 'eye-slash'} size={20} color={COLORS.gray} />
+                </TouchableOpacity>
+            )}
+            {search && (
+                <TouchableOpacity
+                    onPress={onFilter}
+                    style={styles.eyeIconContainer}
+                >
+                    <Icon name="filter" size={20} color={COLORS.gray} />
                 </TouchableOpacity>
             )}
         </View>
@@ -49,10 +82,19 @@ const styles = StyleSheet.create({
         width: '100%',
         fontSize: SIZES.m,
     },
+    searchInput: {
+        paddingHorizontal: 40,
+    },
     eyeIconContainer: {
         position: 'absolute',
         top: '50%',
-        right: 10,
+        right: 15,
+        transform: [{ translateY: -10 }],
+    },
+    iconContainer: {
+        position: 'absolute',
+        top: '50%',
+        left: 15,
         transform: [{ translateY: -10 }],
     },
 });

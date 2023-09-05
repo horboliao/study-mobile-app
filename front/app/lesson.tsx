@@ -41,7 +41,8 @@ const Lesson = () => {
     const handleNavigateToTest = (count : number) => {
         if (count!==0) {
             const selected = subjects.find((s) => s.selected)
-            navigation.navigate('TestScreen', {topic: selected.label, taskCount: count});
+            navigation.navigate('testScreen', {topic: selected.label, taskCount: count});
+
         }
         //Toast.show('This is a toast.', 500);
     };

@@ -2,47 +2,47 @@ import covers from "./covers"
 import {COLORS} from "@/app/constants/theme";
 export const subjects = [
     {
-        label: "Math",
+        label: "Математика",
         color: COLORS.peach,
         cover: covers.math
     },
     {
-        label: "Literature",
+        label: "Українська література",
         color: COLORS.blue,
         cover: covers.literature
     },
     {
-        label: "Ukrainian",
+        label: "Українська мова",
         color: COLORS.skin,
         cover: covers.ukrainian
     },
     {
-        label: "Biology",
+        label: "Біологія",
         color: COLORS.green,
         cover: covers.biology
     },
     {
-        label: "Chemistry",
+        label: "Хімія",
         color: COLORS.yellow,
         cover: covers.chemistry
     },
     {
-        label: "Physics",
+        label: "Фізика",
         color: COLORS.blue,
         cover: covers.physics
     },
     {
-        label: "English",
+        label: "Англійська мова",
         color: COLORS.lavender,
         cover: covers.english
     },
     {
-        label: "Geography",
+        label: "Географія",
         color: COLORS.green,
         cover: covers.geography
     },
     {
-        label: "History",
+        label: "Історія України",
         color: COLORS.yellow,
         cover: covers.history
     }]

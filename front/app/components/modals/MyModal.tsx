@@ -1,21 +1,35 @@
-import React from 'react';
-import { Modal, TouchableOpacity, View, StyleSheet, Text } from 'react-native';
+import React, {ReactNode} from 'react';
+import {Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {COLORS, SIZES} from "@/app/constants";
 
-export const AnswerModal = ({ isModalVisible, toggleModal, explanation }) => {
+interface MyModalProps {
+    isModalVisible: boolean;
+    toggleModal: ()=>void;
+    label: string;
+    children: ReactNode;
+}
+
+const MyModal: React.FC<MyModalProps> = ({isModalVisible, toggleModal, label, children}) => {
     return (
-        <Modal visible={isModalVisible} animationType="fade" transparent={true}>
+        <Modal
+            visible={isModalVisible}
+            animationType="fade"
+            transparent={true}
+        >
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-                    <View style={{flexDirection: "row", justifyContent: "space-between", marginBottom: 10}}>
-                        <Text style={styles.closeButtonText}>Пояснення</Text>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            marginBottom: 10}}
+                    >
+                        <Text style={styles.closeButtonText}>{label}</Text>
                         <TouchableOpacity onPress={toggleModal}>
                             <Text style={styles.closeButtonText}>✕</Text>
                         </TouchableOpacity>
                     </View>
-                    <Text style={styles.explanation}>
-                        {explanation}
-                    </Text>
+                    {children}
                 </View>
             </View>
         </Modal>
@@ -34,13 +48,10 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 15,
         padding: 15,
     },
-    explanation: {
-        fontSize: SIZES.s
-    },
     closeButtonText: {
         fontSize: SIZES.l,
         fontWeight: 'bold',
     },
 });
 
-export default AnswerModal;
+export default MyModal;

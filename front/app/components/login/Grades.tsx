@@ -4,12 +4,22 @@ import ButtonComponent from "@/app/components/ButtonComponent";
 import {COLORS, SIZES} from "@/app/constants";
 import Subject from "@/app/components/Subject";
 import Grade from "@/app/components/Grade";
+import Layout from "@/app/components/Layout";
 
 interface GradesProps {
-    setGrade: (item)=>void
+    setFormData: React.Dispatch<
+        React.SetStateAction<{
+            grade: {
+                title: string,
+                subtitle: string,
+                value: number,
+                selected: boolean,
+            }
+        }>
+        >;
     onNext: () => void
 }
-const Grades: React.FC<GradesProps> = ({onNext, setGrade}) => {
+const Grades: React.FC<GradesProps> = ({onNext,  setFormData}) => {
     const [grades, setGrades] = useState([
         {
             title: "11 grade",
@@ -36,32 +46,26 @@ const Grades: React.FC<GradesProps> = ({onNext, setGrade}) => {
                 : { ...isLikedItem, selected: false }
         );
         setGrades(updatedState);
-        setGrade(item);
+        setFormData((prevData) => ({ ...prevData, grade: item }));
     };
     return (
-        <View style={{backgroundColor: 'black'}}>
-            <View style={styles.containerUp}>
-                <Text style={styles.title}>Choose your grade</Text>
-                <Text style={styles.subtitle}>You can always change your grade in your profile</Text>
+        <Layout title={"Оберіть ваш клас"} subtitle={"Ви завжди зможете змінити його у вашому профілі"}>
+            <View style={styles.gradesContainer}>
+                {
+                    grades.map((grade) => {
+                        return <Grade
+                            title={grade.title}
+                            key={grade.title}
+                            subtitle={grade.subtitle}
+                            selected={grade.selected}
+                            value={grade.value}
+                            onRadioBtnClick={onRadioBtnClick}
+                        />
+                    })
+                }
             </View>
-            <View style={styles.containerDown}>
-                <View style={styles.gradesContainer}>
-                    {
-                        grades.map((grade) => {
-                            return <Grade
-                                title={grade.title}
-                                key={grade.title}
-                                subtitle={grade.subtitle}
-                                selected={grade.selected}
-                                value={grade.value}
-                                onRadioBtnClick={onRadioBtnClick}
-                             />
-                        })
-                    }
-                </View>
-                <ButtonComponent title="Continue" onPress={onNext}/>
-            </View>
-        </View>
+            <ButtonComponent title="Продовжити" onPress={onNext}/>
+        </Layout>
     );
 };
 const styles = StyleSheet.create({

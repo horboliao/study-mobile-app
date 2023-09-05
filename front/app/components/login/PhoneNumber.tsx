@@ -5,14 +5,30 @@ import ButtonComponent from "@/app/components/ButtonComponent";
 import {COLORS, SIZES} from "@/app/constants";
 
 interface PhoneNumberProps {
-    number: string
-    setNumber: (text:string) => void
-    password: string
-    setPassword: (text:string) => void
+    formData: {
+        number: string;
+        password: string;
+    };
+    setFormData: React.Dispatch<
+        React.SetStateAction<{
+            number: string;
+            password: string;
+        }>
+        >;
     onNext: () => void
 }
 
-const PhoneNumber: React.FC<PhoneNumberProps> =({number, setNumber, password,setPassword, onNext}) => {
+const PhoneNumber: React.FC<PhoneNumberProps> =({formData, setFormData, onNext}) => {
+    const { number, password } = formData;
+
+    const handleNumberChange = (text: string) => {
+        setFormData((prevData) => ({ ...prevData, number: text }));
+    };
+
+    const handlePasswordChange = (text: string) => {
+        setFormData((prevData) => ({ ...prevData, password: text }));
+    };
+
     return (
         <View style={{paddingHorizontal: 15}}>
             <Text style={styles.logo}>STUDY</Text>
@@ -24,11 +40,11 @@ const PhoneNumber: React.FC<PhoneNumberProps> =({number, setNumber, password,set
             </View>
             <TextField
                 placeholder="+38(___)___-__-__"
-                onChangeText={setNumber}
+                onChangeText={handleNumberChange}
                 value={number}/>
             <TextField
                 placeholder="Password"
-                onChangeText={setPassword}
+                onChangeText={handlePasswordChange}
                 value={password}
                 secure/>
             <ButtonComponent title="Confirm" onPress={onNext}/>

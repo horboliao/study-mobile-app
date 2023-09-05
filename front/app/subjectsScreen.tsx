@@ -1,6 +1,6 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
-import {COLORS, SIZES, subjects} from "@/app/constants";
+import {ScrollView, StyleSheet, Text} from "react-native";
+import {SIZES, subjects} from "@/app/constants";
 import SubjectCover from "@/app/components/subject/SubjectCover";
 import Layout from "@/app/components/Layout";
 
